@@ -1,0 +1,199 @@
+# Birthday-wishes-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Surbhi 💖</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    text-align:center;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    overflow:hidden;
+}
+
+h1{
+    margin-top:100px;
+    font-size:42px;
+    color:white;
+}
+
+p{
+    font-size:20px;
+    color:white;
+}
+
+button{
+    padding:15px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:#ff4b5c;
+    color:white;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+button:hover{
+    background:#ff1e3c;
+}
+
+.cake{
+    display:none;
+    margin-top:50px;
+    font-size:120px;
+}
+
+.balloon{
+    position:absolute;
+    font-size:40px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float{
+    from{bottom:-100px;}
+    to{bottom:100%;}
+}
+
+.envelope{
+    display:none;
+    font-size:100px;
+    margin-top:50px;
+    cursor:pointer;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0);}
+}
+
+.card{
+    display:none;
+    width:330px;
+    margin:30px auto;
+    padding:25px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+    color:#444;
+    min-height:200px;
+}
+
+.typing{
+    border-right:2px solid #ff4b5c;
+    white-space:pre-wrap;
+    overflow:hidden;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" type="audio/midi">
+</audio>
+
+<div id="firstPage">
+    <h1>🎉 Happy Birthday Surbhi 🎉</h1>
+    <p>
+    May this year bring you closer to every dream you secretly wish for. 💖
+    </p>
+    <button onclick="showSurprise()">Click To See Surprise 🎁</button>
+</div>
+
+<div id="surprisePage" style="display:none;">
+    <div class="cake" id="cake">🎂🕯️🕯️🕯️</div>
+    <button onclick="blowCandle()" id="blowBtn">Blow The Candle 💨</button>
+
+    <div class="envelope" id="envelope" onclick="openCard()">💌</div>
+
+    <div class="card" id="card">
+        <h2>For You, Surbhi 💖</h2>
+        <p class="typing" id="typedText"></p>
+    </div>
+</div>
+
+<script>
+
+const message = `On your special day, Surbhi, I just want you to know how deeply you are appreciated and cared for.
+
+You are not just important — you are someone who makes life feel softer, brighter, and more meaningful.
+
+Your smile has a way of calming storms, and your presence brings warmth that words can never fully describe.
+
+I truly hope this year brings you success in everything you work for, strength when things feel heavy, and happiness in even the smallest moments.
+
+No matter where life takes you, my good wishes will always walk beside you.
+
+Happy Birthday once again. You deserve the most beautiful things in this world. 💕`;
+
+let index = 0;
+
+window.onload = function(){
+    confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 }
+    });
+}
+
+function showSurprise(){
+    document.getElementById("firstPage").style.display="none";
+    document.getElementById("surprisePage").style.display="block";
+    document.getElementById("cake").style.display="block";
+    document.getElementById("bgMusic").play();
+    createBalloons();
+}
+
+function blowCandle(){
+    document.getElementById("cake").innerHTML="🎂";
+    document.getElementById("blowBtn").style.display="none";
+    document.getElementById("envelope").style.display="block";
+
+    confetti({
+        particleCount: 300,
+        spread: 120,
+        origin: { y: 0.6 }
+    });
+}
+
+function openCard(){
+    document.getElementById("card").style.display="block";
+    typeWriter();
+    confetti({
+        particleCount: 200,
+        spread: 150,
+        origin: { y: 0.6 }
+    });
+}
+
+function typeWriter(){
+    if(index < message.length){
+        document.getElementById("typedText").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeWriter, 35);
+    }
+}
+
+function createBalloons(){
+    for(let i=0;i<12;i++){
+        let balloon=document.createElement("div");
+        balloon.className="balloon";
+        balloon.innerHTML="🎈";
+        balloon.style.left=Math.random()*100+"%";
+        balloon.style.animationDuration=(4+Math.random()*3)+"s";
+        document.body.appendChild(balloon);
+    }
+}
+
+</script>
+
+</body>
+  </html>
