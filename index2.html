@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Surbhi 💖</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    text-align:center;
+    font-family:'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    overflow-x:hidden;
+}
+
+h1{
+    margin-top:60px;
+    color:white;
+}
+
+p{
+    color:white;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:25px;
+    background:#ff4b5c;
+    color:white;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+/* Cake Design */
+.cake-container{
+    display:none;
+    margin-top:60px;
+    position:relative;
+}
+
+.cream{
+    width:220px;
+    height:40px;
+    background:#fff;
+    margin:0 auto;
+    border-radius:10px 10px 0 0;
+}
+
+.cake-base{
+    width:220px;
+    height:90px;
+    background:#8b4513;
+    margin:0 auto;
+    border-radius:0 0 15px 15px;
+}
+
+.candle{
+    width:15px;
+    height:50px;
+    background:#ff4b5c;
+    margin:0 auto;
+    position:relative;
+    top:-140px;
+    border-radius:5px;
+}
+
+.flame{
+    width:15px;
+    height:20px;
+    background:orange;
+    border-radius:50%;
+    margin:0 auto;
+    position:relative;
+    top:-180px;
+    animation:flicker 0.3s infinite alternate;
+}
+
+@keyframes flicker{
+    from{transform:scale(1);}
+    to{transform:scale(1.2);}
+}
+
+/* Envelope */
+.envelope{
+    display:none;
+    font-size:80px;
+    margin-top:30px;
+    cursor:pointer;
+}
+
+/* Card */
+.card{
+    display:none;
+    width:90%;
+    max-width:400px;
+    margin:30px auto;
+    padding:25px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+    max-height:320px;
+    overflow-y:auto;
+}
+
+.card h2{
+    color:#ff4b5c;
+}
+
+/* IMPORTANT: MESSAGE BLACK */
+#typedText{
+    color:black;
+    white-space:pre-wrap;
+    font-size:15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy Birthday Surbhi 🎉</h1>
+<p>May this year bring you closer to every dream you secretly wish for. 💖</p>
+
+<button onclick="showCake()">Click To See Surprise 🎁</button>
+
+<div class="cake-container" id="cakeContainer">
+    <div class="cream"></div>
+    <div class="cake-base"></div>
+    <div class="candle"></div>
+    <div class="flame" id="flame"></div>
+    <button onclick="blowCandle()">Blow Candle 💨</button>
+</div>
+
+<div class="envelope" id="envelope" onclick="openCard()">💌</div>
+
+<div class="card" id="card">
+    <h2>For You, Surbhi 💖</h2>
+    <p id="typedText"></p>
+</div>
+
+<script>
+
+const message = `On your special day, Surbhi, I just want you to know how deeply you are appreciated and cared for.
+
+You are not just important — you are someone who makes life feel softer, brighter, and more meaningful.
+
+Your smile has a way of calming storms, and your presence brings warmth that words can never fully describe.
+
+I truly hope this year brings you success in everything you work for, strength when things feel heavy, and happiness in even the smallest moments.
+
+No matter where life takes you, my good wishes will always walk beside you.
+
+Happy Birthday once again. You deserve the most beautiful things in this world. 💕
+
+– From Shalini 💖`;
+
+let index = 0;
+let started = false;
+
+function showCake(){
+    document.getElementById("cakeContainer").style.display="block";
+    confetti({particleCount:200,spread:100});
+}
+
+function blowCandle(){
+    document.getElementById("flame").style.display="none";
+    document.getElementById("envelope").style.display="block";
+    confetti({particleCount:300,spread:120});
+}
+
+function openCard(){
+    document.getElementById("card").style.display="block";
+
+    if(!started){
+        started = true;
+        typeWriter();
+    }
+
+    confetti({particleCount:200,spread:150});
+}
+
+function typeWriter(){
+    if(index < message.length){
+        document.getElementById("typedText").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeWriter, 25);
+    }
+}
+
+</script>
+
+</body>
+</html>
